@@ -1,48 +1,28 @@
-// 
-//
-// $(document).ready(function() {
-//   $('button.btn').click(function() {
-//     if () {
-//   } else
-//     alert("Please enter text to translate!")
-//   })
-//
-//
-//
-//
-// });
+$(document).ready(function() {
 
-var vowelArray = ["a", "e", "i", "o", "u", "A", "I", "E", "O", "U"];
-var vowel = function(word) {
-  for (var i = 0; i < vowelArray.length; i++) {
-    if (word.charAt(0) === vowelArray[i]) {
-      return(word + "ay");
-    }
-  }
-}
-var consonantQu = function(word) {
-  for (var i = 0; i < word.length; i++){
-    for (var j = 0; j < vowelArray.length; j++){
-      if (word.charAt([i]) !== vowelArray[j]) {
-      } else {
-        return word.slice([i]) + word.slice(0,[i]) + "ay";
+  $('form#piglatin').submit(function(event) {
+  //debugger;
+    var userInput = ($('input#word')).val();
+    var result = pigLatin(userInput);
+    console.log(result);
+    $('.translation').text(result).show();
+
+    event.preventDefault();
+  });
+});
+
+var pigLatin = function(word){
+  var vowelArray = ["a", "e", "i", "o", "u", "A", "I", "E", "O", "U"];
+    if (word[0] !== "q"){
+      for (var j = 0; j < word.length; j++){
+        for (var k = 0; k < vowelArray.length; k++){
+          if (word.charAt([j]) === vowelArray[k]) {
+            return word.slice([j]) + word.slice(0,[j]) + "ay";
+          }
+        }
       }
     }
-  }
-}
-
-var qu = function(word) {
-  if (word[0] === "q" || "Q") {
-    return (word.slice(2) + word.slice(0,2) + "ay").toLowerCase();
-  }
-}
-var consonant = function(word) {
-  for (var i = 0; i < word.length; i++){
-    for (var j = 0; j < vowelArray.length; j++){
-      if (word.charAt([i]) !== vowelArray[j]) {
-      } else {
-        return word.slice([i]) + word.slice(0,[i]) + "ay";
-      }
+    else {
+      return (word.slice(2) + word.slice(0,2) + "ay").toLowerCase();
     }
-  }
 }
