@@ -1,16 +1,25 @@
 $(document).ready(function() {
 
   $('form#piglatin').submit(function(event) {
-  //debugger;
+  debugger;
     var userInput = ($('input#word')).val();
-    var result = pigLatin(userInput);
+    var result = pigLatinSentence(sentence);
     console.log(result);
     $('.translation').text(result).show();
 
     event.preventDefault();
   });
 });
+function pigLatinSentence(sentence){
+  sentence = sentence.split(" ");
+  // console.log(sentence);
+  sentence.forEach(function(e){
+    e = pigLatin(e);
+    console.log(e);
+    $('.translation').append(e + ' ');
+  });
 
+}
 var pigLatin = function(word){
   var vowelArray = ["a", "e", "i", "o", "u", "A", "I", "E", "O", "U"];
     if (word[0] !== "q"){
